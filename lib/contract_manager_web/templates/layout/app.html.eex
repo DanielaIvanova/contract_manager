@@ -16,8 +16,13 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a>Sign Up</a></li>
-            <li><a>Sign In</a></li>
+          <%= if signed_in?(@conn) do %>
+            <%= link "Sign out", to: session_path(@conn, :delete), method: :delete %>
+          <% else %>
+            <%= link "Sign In", to: session_path(@conn, :new) %>
+            |
+            <%= link "Sign up", to: user_path(@conn, :new) %>
+          <% end %>
           </ul>
         </nav>
         <span class="logo"></span>
