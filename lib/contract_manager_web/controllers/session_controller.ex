@@ -14,12 +14,15 @@ defmodule ContractManagerWeb.SessionController do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
-        |> put_flash(:info, "Signed in successfully.")
+        |> put_flash(:info, "Welcome back, #{user.name}!")
         |> redirect(to: page_path(conn, :index))
 
       {:error, _} ->
         conn
-        |> put_flash(:error, "There was a problem with your email/password")
+        |> put_flash(
+          :error,
+          "We weren't able to find a user with the specified email and password combination"
+        )
         |> render("new.html")
     end
   end

@@ -25,8 +25,8 @@
 
   <div class="form-group">
     <%= label f, :password_confirmation, class: "control-label" %>
-    <%= password_input f, :password_confirmation, class: "form-control" %>
-    <%= error_tag f, :password_confirmation %>
+    <%= password_input f, :encrypted_password_confirmation, class: "form-control" %>
+    <%= error_tag f, :encrypted_password_confirmation %>
   </div>
 
   <div class="form-group">

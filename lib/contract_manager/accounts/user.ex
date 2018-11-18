@@ -6,7 +6,7 @@ defmodule ContractManager.Accounts.User do
   schema "users" do
     field(:email, :string)
     field(:encrypted_password, :string)
-    field(:password_confirmation, :string, virtual: true)
+    field(:encrypted_password_confirmation, :string, virtual: true)
     field(:name, :string)
 
     timestamps()
@@ -15,8 +15,8 @@ defmodule ContractManager.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :encrypted_password, :password_confirmation])
-    |> validate_required([:name, :email, :encrypted_password, :password_confirmation])
+    |> cast(attrs, [:name, :email, :encrypted_password, :encrypted_password_confirmation])
+    |> validate_required([:name, :email, :encrypted_password, :encrypted_password_confirmation])
     |> unique_constraint(:email)
     |> validate_format(
       :email,
@@ -24,10 +24,10 @@ defmodule ContractManager.Accounts.User do
       message: "Email is invalid"
     )
     |> validate_length(:encrypted_password, min: 8, max: 100)
-    |> update_change(:encrypted_password, &Bcrypt.hashpwsalt/1)
     |> validate_confirmation(
       :encrypted_password,
       message: "The password confirmation doesn't match"
     )
+    |> update_change(:encrypted_password, &Bcrypt.hashpwsalt/1)
   end
 end

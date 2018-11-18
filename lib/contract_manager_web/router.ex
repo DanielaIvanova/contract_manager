@@ -18,11 +18,11 @@ defmodule ContractManagerWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
-    resources("/registrations", UserController, only: [:new, :create])
+    resources("/signup", UserController, only: [:new, :create])
 
-    get("/sign-in", SessionController, :new)
-    post("/sign-in", SessionController, :create)
-    delete("/sign-out", SessionController, :delete)
+    get("/signin", SessionController, :new)
+    post("/signin", SessionController, :create)
+    delete("/signout", SessionController, :delete)
   end
 
   # Other scopes may use custom stacks.
