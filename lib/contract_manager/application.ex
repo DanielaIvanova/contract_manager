@@ -11,7 +11,7 @@ defmodule ContractManager.Application do
       # Start the Ecto repository
       supervisor(ContractManager.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ContractManagerWeb.Endpoint, []),
+      supervisor(ContractManagerWeb.Endpoint, [])
       # Start your own worker by calling: ContractManager.Worker.start_link(arg1, arg2, arg3)
       # worker(ContractManager.Worker, [arg1, arg2, arg3]),
     ]
